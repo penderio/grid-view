@@ -150,6 +150,7 @@ class Demo extends Component {
                     `}
                 >
                     <GridView
+                        id={'view'}
                         rowCount={data.content.length}
                         fields={data.structure.fields}
                         rowGetter={({index}) => data.content[index]}

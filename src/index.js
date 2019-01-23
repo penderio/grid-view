@@ -7,6 +7,10 @@ import 'react-virtualized/styles.css'
 export default class GridView extends React.Component {
 
     static propTypes = {
+        id: PropTypes.string.isRequired,
+        rowCount: PropTypes.number.isRequired,
+        rowGetter: PropTypes.func.isRequired,
+        fieldRenderer: PropTypes.func.isRequired,
         fields: PropTypes.arrayOf(
             PropTypes.shape({
                 id: PropTypes.string.isRequired,

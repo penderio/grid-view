@@ -4,7 +4,7 @@
 
 Used for displaying records in a grid like a spreadsheet.
 
-![GridView](https://user-images.githubusercontent.com/44947294/48402064-40cdbd00-e75d-11e8-9633-e52fd0217636.gif)
+![GridView](https://user-images.githubusercontent.com/44947294/51593386-5b0cdf80-1ef2-11e9-8ce3-905b6754b2a6.gif)
 ## Getting started
 
 ````
@@ -16,6 +16,16 @@ npm install @cmds/grid-view --save
 | Property | Type | Required? | Description |
 |:---|:---|:---:|:---|
 | id | String | ✓ | Unique id for the instance of this view |
+| rowCount | Number | ✓ | The amount of rows to be rendered |
+| rowGetter | Function | ✓ | Return row data for the index `({index: number})` |
+| fieldRenderer | Function | ✓ | Callback invoked whenever one of the cells get's rendered: `({index: number}): jsx` |
+| fields | Array | ✓ | Array of fields to be displayed as columns |
+
+#### Field
+| Property | Type | Required? | Description |
+|:---|:---|:---:|:---|
+| id | String | ✓ | Unique id for the field |
+| name | String | ✓ | Name to be displayed as column name |
 
 ### More information
 
