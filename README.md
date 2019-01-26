@@ -1,5 +1,7 @@
 # ![GridView](https://user-images.githubusercontent.com/44801418/48134118-91f82f80-e2cb-11e8-9928-c54c3d41015f.png) GridView
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/entercosmos/grid-view.svg)](https://greenkeeper.io/)
+
 [![npm package][npm-badge]][npm]
 
 Used for displaying records in a grid like a spreadsheet.
