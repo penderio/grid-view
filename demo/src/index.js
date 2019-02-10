@@ -147,6 +147,7 @@ class Demo extends Component {
                         left: 0;
                         right: 0;
                         bottom: 0;
+                        background-color: #fff;
                     `}
                 >
                     <GridView

@@ -4,12 +4,17 @@ import PropTypes from 'prop-types'
 import {Table, AutoSizer, Column} from 'react-virtualized'
 import 'react-virtualized/styles.css'
 
+const defaultCellDataGetter = ({id, data}) => {
+        return data.cells[id]
+}
+
 export default class GridView extends React.Component {
 
     static propTypes = {
         id: PropTypes.string.isRequired,
         rowCount: PropTypes.number.isRequired,
         rowGetter: PropTypes.func.isRequired,
+        cellDataGetter: PropTypes.func.isRequired,
         fieldRenderer: PropTypes.func.isRequired,
         fields: PropTypes.arrayOf(
             PropTypes.shape({
@@ -20,6 +25,8 @@ export default class GridView extends React.Component {
     }
 
     render() {
+
+        const cellDataGetter = this.props.cellDataGetter || defaultCellDataGetter
 
         return (
             <AutoSizer>
@@ -55,7 +62,11 @@ export default class GridView extends React.Component {
     }
 
     cellDataGetter = ({dataKey, rowData}) => {
-        return rowData.cells[dataKey]
+        const cellDataGetter = this.props.cellDataGetter || defaultCellDataGetter
+        return cellDataGetter({
+            id: dataKey,
+            data: rowData
+        })
     }
 
     cellRenderer = (params) => {
