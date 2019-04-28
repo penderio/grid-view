@@ -12,7 +12,6 @@ import LinkToAnotherRecordField from '@cmds/link-to-another-record-field'
 import GridView from '../../src'
 import data from './data.json'
 
-
 injectGlobal`
     * {
         box-sizing: border-box;
@@ -122,42 +121,13 @@ class Demo extends Component {
                     bottom: 0;
                 `}
             >
-                <div
-                    className={css`
-                        position: fixed;
-                        top: 0;
-                        left: 0;
-                        right: 0;
-                        height: 130px;
-                        z-index: 1030;
-                        background-color: #fff;
-                        padding-left: 20px;
-                        padding-right: 20px;
-                        border-bottom: 1px solid #ccc;
-                    `}
-                >
-                    <h1>GridView <a href="https://www.npmjs.org/package/@cmds/grid-view" target="_blank"><img
-                        src="https://img.shields.io/npm/v/@cmds/grid-view.svg"/></a></h1>
-                    <p>Used for displaying records in a grid like a spreadsheet.	</p>
-                </div>
-                <div
-                    className={css`
-                        position: absolute;
-                        top: 130px;
-                        left: 0;
-                        right: 0;
-                        bottom: 0;
-                        background-color: #fff;
-                    `}
-                >
-                    <GridView
-                        id={'view'}
-                        rowCount={data.content.length}
-                        fields={data.structure.fields}
-                        rowGetter={({index}) => data.content[index]}
-                        fieldRenderer={fieldRenderer}
-                    />
-                </div>
+                <GridView
+                    id={'view'}
+                    rowCount={data.content.length}
+                    fields={data.structure.fields}
+                    rowGetter={({index}) => data.content[index]}
+                    fieldRenderer={fieldRenderer}
+                />
             </div>
         )
     }

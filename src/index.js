@@ -21,15 +21,18 @@ export default class GridView extends React.Component {
                 id: PropTypes.string.isRequired,
                 name: PropTypes.string.isRequired
             })
-        )
+        ),
+        defaultHeight: PropTypes.number,
+        defaultWidth: PropTypes.number
     }
 
     render() {
 
+        const {defaultHeight, defaultWidth} = this.props
         const cellDataGetter = this.props.cellDataGetter || defaultCellDataGetter
 
         return (
-            <AutoSizer>
+            <AutoSizer defaultHeight={defaultHeight} defaultWidth={defaultWidth}>
                 {({width, height}) => (
                     <Table
                         headerHeight={40}
