@@ -11,6 +11,8 @@ import NumberField from '@cmds/number-field'
 import LinkToAnotherRecordField from '@cmds/link-to-another-record-field'
 import GridView from '../../src'
 import data from './data.json'
+import 'react-virtualized/styles.css'
+import '../../src/styles.css'
 
 injectGlobal`
     * {

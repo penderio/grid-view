@@ -2,7 +2,6 @@ import React from 'react'
 import {css} from 'emotion'
 import PropTypes from 'prop-types'
 import {Table, AutoSizer, Column} from 'react-virtualized'
-import 'react-virtualized/styles.css'
 
 const defaultCellDataGetter = ({id, data}) => {
         return data.cells[id]
@@ -35,17 +34,13 @@ export default class GridView extends React.Component {
             <AutoSizer defaultHeight={defaultHeight} defaultWidth={defaultWidth}>
                 {({width, height}) => (
                     <Table
-                        headerHeight={40}
+                        headerHeight={50}
                         height={height}
                         overscanRowCount={10}
                         rowGetter={this.props.rowGetter}
-                        rowHeight={40}
+                        rowHeight={60}
                         rowCount={this.props.rowCount}
                         width={width}
-                        headerClassName={css`
-                            font-weight: 400;
-                            text-transform: none;
-                        `}
                     >
                         {this.props.fields.map(field => (
                             <Column
@@ -90,7 +85,7 @@ export default class GridView extends React.Component {
                     align-items: center;
                     display: inline-flex;
                     cursor: pointer;
-                    height: 24px;
+                    height: 100%;
                     overflow: hidden;
                 `}
             >
