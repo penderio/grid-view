@@ -1,6 +1,6 @@
 {
   "name": "@pndr/grid-view",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Used for displaying records in a grid like a spreadsheet.",
   "main": "lib/index.js",
   "module": "es/index.js",
