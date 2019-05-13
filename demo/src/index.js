@@ -1,14 +1,14 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
 import {css, injectGlobal} from 'emotion'
-import CheckboxField from '@cmds/checkbox-field'
-import AttachmentField from '@cmds/attachment-field'
-import LongTextField from '@cmds/long-text-field'
-import SingleLineTextField from '@cmds/single-line-text-field'
-import SingleSelectField from '@cmds/single-select-field'
-import MultipleSelectField from '@cmds/multiple-select-field'
-import NumberField from '@cmds/number-field'
-import LinkToAnotherRecordField from '@cmds/link-to-another-record-field'
+import CheckboxField from '@pndr/checkbox-field'
+import AttachmentField from '@pndr/attachment-field'
+import LongTextField from '@pndr/long-text-field'
+import SingleLineTextField from '@pndr/single-line-text-field'
+import SingleSelectField from '@pndr/single-select-field'
+import MultipleSelectField from '@pndr/multiple-select-field'
+import NumberField from '@pndr/number-field'
+import LinkToAnotherRecordField from '@pndr/link-to-another-record-field'
 import GridView from '../../src'
 import data from './data.json'
 import 'react-virtualized/styles.css'
@@ -25,14 +25,6 @@ injectGlobal`
         font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
     }
 `
-
-const selectName = ({record}) => {
-    return record.cells.fld1.text
-}
-
-const selectCoverAttachments = ({record}) => {
-    return record.cells.fld5.attachments
-}
 
 const fieldRenderer = ({id, field, props, cell}) => {
 
@@ -64,7 +56,11 @@ const fieldRenderer = ({id, field, props, cell}) => {
         linkToAnotherRecord: ({props, cell}) => (
             <LinkToAnotherRecordField
                 {...props}
-                records={cell.records}
+                recordCount={cell.records.length}
+                recordGetter={({index}) => {
+                    return cell.records[index]
+                }}
+                recordRenderer={() => null}
             />
         ),
         multipleSelect: ({props, field, cell}) => (
@@ -124,7 +120,6 @@ class Demo extends Component {
                 `}
             >
                 <GridView
-                    id={'view'}
                     rowCount={data.content.length}
                     fields={data.structure.fields}
                     rowGetter={({index}) => data.content[index]}

@@ -10,7 +10,6 @@ const defaultCellDataGetter = ({id, data}) => {
 export default class GridView extends React.Component {
 
     static propTypes = {
-        id: PropTypes.string.isRequired,
         rowCount: PropTypes.number.isRequired,
         rowGetter: PropTypes.func.isRequired,
         cellDataGetter: PropTypes.func.isRequired,
@@ -28,7 +27,6 @@ export default class GridView extends React.Component {
     render() {
 
         const {defaultHeight, defaultWidth} = this.props
-        const cellDataGetter = this.props.cellDataGetter || defaultCellDataGetter
 
         return (
             <AutoSizer defaultHeight={defaultHeight} defaultWidth={defaultWidth}>
@@ -87,6 +85,7 @@ export default class GridView extends React.Component {
                     cursor: pointer;
                     height: 100%;
                     overflow: hidden;
+                    font-size: 13px;
                 `}
             >
                 {this.props.fieldRenderer({
