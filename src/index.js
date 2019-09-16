@@ -1,16 +1,17 @@
 import React from 'react'
-import {css} from 'emotion'
+import { css } from 'emotion'
 import PropTypes from 'prop-types'
-import {Table, AutoSizer, Column} from 'react-virtualized'
+import { Table, AutoSizer, Column } from 'react-virtualized'
 
-const defaultCellDataGetter = ({id, data}) => {
-        return data.cells[id]
+const defaultCellDataGetter = ({ id, data }) => {
+    return data.cells[id]
 }
 
 export default class GridView extends React.Component {
 
     static propTypes = {
         rowCount: PropTypes.number.isRequired,
+        onRowClick: PropTypes.func,
         rowGetter: PropTypes.func.isRequired,
         cellDataGetter: PropTypes.func.isRequired,
         fieldRenderer: PropTypes.func.isRequired,
@@ -26,11 +27,11 @@ export default class GridView extends React.Component {
 
     render() {
 
-        const {defaultHeight, defaultWidth} = this.props
+        const { defaultHeight, defaultWidth } = this.props
 
         return (
             <AutoSizer defaultHeight={defaultHeight} defaultWidth={defaultWidth}>
-                {({width, height}) => (
+                {({ width, height }) => (
                     <Table
                         headerHeight={50}
                         height={height}
@@ -39,6 +40,7 @@ export default class GridView extends React.Component {
                         rowHeight={60}
                         rowCount={this.props.rowCount}
                         width={width}
+                        onRowClick={this.props.onRowClick}
                     >
                         {this.props.fields.map(field => (
                             <Column
@@ -57,7 +59,7 @@ export default class GridView extends React.Component {
         )
     }
 
-    cellDataGetter = ({dataKey, rowData}) => {
+    cellDataGetter = ({ dataKey, rowData }) => {
         const cellDataGetter = this.props.cellDataGetter || defaultCellDataGetter
         return cellDataGetter({
             id: dataKey,
@@ -67,7 +69,7 @@ export default class GridView extends React.Component {
 
     cellRenderer = (params) => {
 
-        const {columnIndex, rowData, cellData} = params
+        const { columnIndex, rowData, cellData } = params
 
         const field = this.props.fields[columnIndex]
 

@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
-import {render} from 'react-dom'
-import {css, injectGlobal} from 'emotion'
+import React, { Component } from 'react'
+import { render } from 'react-dom'
+import { css, injectGlobal } from 'emotion'
 import CheckboxField from '@pndr/checkbox-field'
 import AttachmentField from '@pndr/attachment-field'
 import LongTextField from '@pndr/long-text-field'
@@ -26,44 +26,44 @@ injectGlobal`
     }
 `
 
-const fieldRenderer = ({id, field, props, cell}) => {
+const fieldRenderer = ({ id, field, props, cell }) => {
 
     const renderers = {
-        singleLineText: ({props, cell}) => (
+        singleLineText: ({ props, cell }) => (
             <SingleLineTextField
                 {...props}
                 text={cell.text}
             />
         ),
-        longText: ({props, cell}) => (
+        longText: ({ props, cell }) => (
             <LongTextField
                 {...props}
                 longText={cell.longText}
             />
         ),
-        checkbox: ({props, cell}) => (
+        checkbox: ({ props, cell }) => (
             <CheckboxField
                 {...props}
                 checked={cell.checked}
             />
         ),
-        attachment: ({props, cell}) => (
+        attachment: ({ props, cell }) => (
             <AttachmentField
                 {...props}
                 attachments={cell.attachments}
             />
         ),
-        linkToAnotherRecord: ({props, cell}) => (
+        linkToAnotherRecord: ({ props, cell }) => (
             <LinkToAnotherRecordField
                 {...props}
                 recordCount={cell.records.length}
-                recordGetter={({index}) => {
+                recordGetter={({ index }) => {
                     return cell.records[index]
                 }}
                 recordRenderer={() => null}
             />
         ),
-        multipleSelect: ({props, field, cell}) => (
+        multipleSelect: ({ props, field, cell }) => (
             <MultipleSelectField
                 {...props}
                 optionIds={cell.optionIds}
@@ -72,7 +72,7 @@ const fieldRenderer = ({id, field, props, cell}) => {
                 coloredOptions={field.options.coloredOptions}
             />
         ),
-        singleSelect: ({props, field, cell}) => (
+        singleSelect: ({ props, field, cell }) => (
             <SingleSelectField
                 {...props}
                 optionId={cell.optionId}
@@ -81,7 +81,7 @@ const fieldRenderer = ({id, field, props, cell}) => {
                 coloredOptions={field.options.coloredOptions}
             />
         ),
-        number: ({props, field, cell}) => (
+        number: ({ props, field, cell }) => (
             <NumberField
                 {...props}
                 number={cell.number}
@@ -122,12 +122,18 @@ class Demo extends Component {
                 <GridView
                     rowCount={data.content.length}
                     fields={data.structure.fields}
-                    rowGetter={({index}) => data.content[index]}
+                    rowGetter={({ index }) => data.content[index]}
                     fieldRenderer={fieldRenderer}
+                    onRowClick={this.handleRowClick}
                 />
             </div>
         )
     }
+
+    handleRowClick = ({ index }) => {
+
+        alert(`Clicked row at index ${index}`)
+    }
 }
 
-render(<Demo/>, document.querySelector('#demo'))
+render(<Demo />, document.querySelector('#demo'))
